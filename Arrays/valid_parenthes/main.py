@@ -47,26 +47,23 @@ class Solution:
         parenthesis_stack=[]
         output=True
         
-        for i in range(0, len(list_parenthesis)):
+        #Checking if every opener has  a closer
+        for i in range(0,len(list_parenthesis)):
+            matching_parenthesis=valid_parenthesis.get(list_parenthesis[i])
             
-            if valid_parenthesis.get(list_parenthesis[i]) != None:
+            if matching_parenthesis != None:
                 parenthesis_stack.append(list_parenthesis[i])
             else:
-                if len(parenthesis_stack)== 0:
+                if len(parenthesis_stack)<= 0:
                     return False
                 else:
-                    last_item=parenthesis_stack.pop()
-                    if valid_parenthesis.get(last_item) != list_parenthesis[i]:
+                    last_opener=parenthesis_stack.pop()
+                    if valid_parenthesis.get(last_opener) != list_parenthesis[i]:
                         return False
-                    
         if len(parenthesis_stack) > 0:
             return False
-            
+        
         return output
-    
-    
     
 sol=Solution()
 print(sol.isValid(s))
-                
-            
